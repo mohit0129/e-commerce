@@ -23,6 +23,7 @@ import UserCartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cart-slice";
 import { Label } from "../ui/label";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 function MenuItems() {
   const navigate = useNavigate();
@@ -68,12 +69,19 @@ function HeaderRightContent() {
   const { user } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.shopCart);
   const [openCartSheet, setOpenCartSheet] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   function handleLogout() {
     dispatch(logoutUser());
   }
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark');
+  };
 
   useEffect(() => {
     dispatch(fetchCartItems(user?.id));
@@ -83,6 +91,17 @@ function HeaderRightContent() {
 
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+      {/* Dark Mode Toggle */}
+      <Button
+        onClick={toggleDarkMode}
+        variant="outline"
+        size="icon"
+        className="relative"
+      >
+        {isDarkMode ? <FaSun className="w-5 h-5" /> : <FaMoon className="w-5 h-5" />}
+        <span className="sr-only">Toggle dark mode</span>
+      </Button>
+
       <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
         <Button
           onClick={() => setOpenCartSheet(true)}

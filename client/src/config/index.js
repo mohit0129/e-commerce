@@ -1,69 +1,115 @@
 export const registerFormControls = [
   {
+    id: "userName",
     name: "userName",
-    label: "User Name",
-    placeholder: "Enter your user name",
-    componentType: "input",
+    label: "Username",
+    placeholder: "Enter your username",
     type: "text",
+    componentType: "input",
+    validation: {
+      required: true,
+      minLength: 3,
+      maxLength: 20,
+      pattern: /^[a-zA-Z0-9_]+$/
+    }
   },
   {
+    id: "email",
     name: "email",
     label: "Email",
     placeholder: "Enter your email",
-    componentType: "input",
     type: "email",
+    componentType: "input",
+    validation: {
+      required: true,
+      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+    }
   },
   {
+    id: "password",
     name: "password",
     label: "Password",
     placeholder: "Enter your password",
-    componentType: "input",
     type: "password",
+    componentType: "input",
+    validation: {
+      required: true,
+      minLength: 8,
+      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
+    }
   },
 ];
 
 export const loginFormControls = [
   {
+    id: "email",
     name: "email",
     label: "Email",
     placeholder: "Enter your email",
-    componentType: "input",
     type: "email",
+    componentType: "input",
+    validation: {
+      required: true,
+      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+    }
   },
   {
+    id: "password",
     name: "password",
     label: "Password",
     placeholder: "Enter your password",
-    componentType: "input",
     type: "password",
+    componentType: "input",
+    validation: {
+      required: true
+    }
   },
 ];
 
 export const addProductFormElements = [
   {
-    label: "Title",
+    id: "title",
     name: "title",
-    componentType: "input",
-    type: "text",
+    label: "Title",
     placeholder: "Enter product title",
+    type: "text",
+    componentType: "input",
+    validation: {
+      required: true,
+      minLength: 3,
+      maxLength: 100
+    }
   },
   {
-    label: "Description",
+    id: "description",
     name: "description",
-    componentType: "textarea",
+    label: "Description",
     placeholder: "Enter product description",
+    type: "text",
+    componentType: "textarea",
+    validation: {
+      required: true,
+      minLength: 10,
+      maxLength: 500
+    }
   },
   {
-    label: "Category",
+    id: "category",
     name: "category",
+    label: "Category",
+    placeholder: "Select product category",
+    type: "text",
     componentType: "select",
     options: [
       { id: "men", label: "Men" },
       { id: "women", label: "Women" },
       { id: "kids", label: "Kids" },
       { id: "accessories", label: "Accessories" },
-      { id: "footwear", label: "Footwear" },
+      { id: "footwear", label: "Footwear" }
     ],
+    validation: {
+      required: true
+    }
   },
   {
     label: "Brand",
@@ -79,11 +125,17 @@ export const addProductFormElements = [
     ],
   },
   {
-    label: "Price",
+    id: "price",
     name: "price",
-    componentType: "input",
-    type: "number",
+    label: "Price",
     placeholder: "Enter product price",
+    type: "number",
+    componentType: "input",
+    validation: {
+      required: true,
+      min: 0,
+      pattern: /^\d+(\.\d{1,2})?$/
+    }
   },
   {
     label: "Sale Price",
@@ -93,11 +145,17 @@ export const addProductFormElements = [
     placeholder: "Enter sale price (optional)",
   },
   {
-    label: "Total Stock",
-    name: "totalStock",
-    componentType: "input",
+    id: "stock",
+    name: "stock",
+    label: "Stock",
+    placeholder: "Enter product stock",
     type: "number",
-    placeholder: "Enter total stock",
+    componentType: "input",
+    validation: {
+      required: true,
+      min: 0,
+      pattern: /^\d+$/
+    }
   },
 ];
 
@@ -188,37 +246,79 @@ export const sortOptions = [
 
 export const addressFormControls = [
   {
-    label: "Address",
-    name: "address",
-    componentType: "input",
+    id: "fullName",
+    name: "fullName",
+    label: "Full Name",
+    placeholder: "Enter your full name",
     type: "text",
-    placeholder: "Enter your address",
+    componentType: "input",
+    validation: {
+      required: true,
+      minLength: 3,
+      maxLength: 50
+    }
   },
   {
-    label: "City",
-    name: "city",
-    componentType: "input",
-    type: "text",
-    placeholder: "Enter your city",
-  },
-  {
-    label: "Pincode",
-    name: "pincode",
-    componentType: "input",
-    type: "text",
-    placeholder: "Enter your pincode",
-  },
-  {
-    label: "Phone",
+    id: "phone",
     name: "phone",
-    componentType: "input",
-    type: "text",
+    label: "Phone Number",
     placeholder: "Enter your phone number",
+    type: "tel",
+    componentType: "input",
+    validation: {
+      required: true,
+      pattern: /^\d{10}$/
+    }
   },
   {
-    label: "Notes",
-    name: "notes",
+    id: "address",
+    name: "address",
+    label: "Address",
+    placeholder: "Enter your address",
+    type: "text",
     componentType: "textarea",
-    placeholder: "Enter any additional notes",
+    validation: {
+      required: true,
+      minLength: 10,
+      maxLength: 200
+    }
+  },
+  {
+    id: "city",
+    name: "city",
+    label: "City",
+    placeholder: "Enter your city",
+    type: "text",
+    componentType: "input",
+    validation: {
+      required: true,
+      minLength: 2,
+      maxLength: 50
+    }
+  },
+  {
+    id: "state",
+    name: "state",
+    label: "State",
+    placeholder: "Enter your state",
+    type: "text",
+    componentType: "input",
+    validation: {
+      required: true,
+      minLength: 2,
+      maxLength: 50
+    }
+  },
+  {
+    id: "pincode",
+    name: "pincode",
+    label: "Pincode",
+    placeholder: "Enter your pincode",
+    type: "text",
+    componentType: "input",
+    validation: {
+      required: true,
+      pattern: /^\d{6}$/
+    }
   },
 ];

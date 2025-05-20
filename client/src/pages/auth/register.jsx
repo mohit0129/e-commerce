@@ -5,6 +5,7 @@ import { registerUser } from "@/store/auth-slice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const initialState = {
   userName: "",
@@ -35,32 +36,71 @@ function AuthRegister() {
     });
   }
 
-  console.log(formData);
-
   return (
-    <div className="mx-auto w-full max-w-md space-y-6">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">
-          Create new account
-        </h1>
-        <p className="mt-2">
-          Already have an account
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="w-full"
+    >
+      <div className="text-center mb-8">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-4xl font-bold tracking-tight text-gray-900 mb-2"
+        >
+          Create Your Account
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-gray-600"
+        >
+          Already have an account?{" "}
           <Link
-            className="font-medium ml-2 text-primary hover:underline"
+            className="font-medium text-primary hover:text-primary/80 transition-colors"
             to="/auth/login"
           >
-            Login
+            Sign in
+          </Link>
+        </motion.p>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+      >
+        <CommonForm
+          formControls={registerFormControls}
+          buttonText={"Create Account"}
+          formData={formData}
+          setFormData={setFormData}
+          onSubmit={onSubmit}
+        />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        className="mt-6 text-center"
+      >
+        <p className="text-sm text-gray-600">
+          By creating an account, you agree to our{" "}
+          <Link to="/terms" className="text-primary hover:text-primary/80 transition-colors">
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link to="/privacy" className="text-primary hover:text-primary/80 transition-colors">
+            Privacy Policy
           </Link>
         </p>
-      </div>
-      <CommonForm
-        formControls={registerFormControls}
-        buttonText={"Sign Up"}
-        formData={formData}
-        setFormData={setFormData}
-        onSubmit={onSubmit}
-      />
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
