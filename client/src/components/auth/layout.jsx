@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import AuthBanner from "../assets/AuthBanner.jpeg";
+import AuthBanner from "../../assets/AuthBanner.jpeg";
 
 function AuthLayout() {
   return (
