@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import AuthBanner from "../assets/AuthBanner.jpeg";
 
 function AuthLayout() {
   return (
@@ -8,7 +9,7 @@ function AuthLayout() {
         <div className="absolute inset-0 bg-black/40 z-10" />
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2070"
+            src={AuthBanner}
             alt="Shopping"
             className="w-full h-full object-cover"
           />
